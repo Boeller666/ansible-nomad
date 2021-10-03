@@ -1,4 +1,6 @@
 galaxy_info:
+  role_name: ansible_nomad
+  namespace: rgaertner
   author: René Gärtner
   description: Ansible role to create a nomad cluster
   company:
