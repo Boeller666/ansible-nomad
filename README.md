@@ -1,4 +1,4 @@
-# Ansible Role Consul
+# Ansible Role Nomad
 
 This role installs [Hashicorp Nomad](https://www.nomadproject.io/).
 
