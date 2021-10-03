@@ -1,0 +1,12 @@
+# ansible
+ansible == 4.3.0
+ansible-lint
+PyYAML
+yamllint
+
+# molecule tesing suite
+molecule[docker]
+molecule[lint]
+molecule-hetznercloud
+molecule-vagrant
+python-vagrant

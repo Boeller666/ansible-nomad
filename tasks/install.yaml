@@ -1,0 +1,29 @@
+---
+- name: install | download nomad
+  ansible.builtin.unarchive:
+    src: "{{ NOMAD_DOWNLOAD_PATH }}"
+    dest: /usr/local/bin/
+    group: root
+    owner: root
+    remote_src: yes
+  become: true
+
+- name: install | check for nomad autocomplete
+  lineinfile:
+    path: /root/.bashrc
+    regexp: '^complete -C.*nomad$'
+    state: absent
+  check_mode: yes
+  changed_when: false
+  register: nomad_autocomplete
+  become: true
+
+- name: install | install nomad autocomplete
+  ansible.builtin.command: nomad -autocomplete-install
+  when: not nomad_autocomplete.found
+  become: true
+
+# - name: install | install nomad autocomplete
+#   ansible.builtin.command: 
+#     cmd: complete -C /usr/local/bin/nomad nomad
+#   become: true

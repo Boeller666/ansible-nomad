@@ -1,0 +1,15 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: hetznercloud
+platforms:
+  - name: "ansible-nomad"
+    server_type: cx11
+    image: ubuntu-20.04
+provisioner:
+  name: ansible
+# lint: |
+#   set -e
+#   yamllint .
+#   ansible-lint .

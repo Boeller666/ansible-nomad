@@ -1,0 +1,54 @@
+# editorconfig.org
+
+root = true
+
+# by filetype
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = spaces
+insert_final_newline = true
+max_line_length = null
+quote_type = single
+trim_trailing_whitespace = true
+
+[all]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+indent_size = 2
+quote_type = double
+trim_trailing_whitespace = false
+
+[*.html]
+quote_type = single
+
+[*.{yaml,yml}]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+quote_type = double
+trim_trailing_whitespace = true
+
+# by filename
+
+[Dockerfile]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{package.json,.travis.yml}]
+indent_size = 2
+indent_style = space
+
+[Vagrantfile]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true

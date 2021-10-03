@@ -1,0 +1,19 @@
+---
+# Ignore virtualenv lib/ inside directory
+ignore: |
+  **/lib/
+  molecule/
+extends: default
+rules:
+  line-length:
+    max: 200
+    level: warning
+  truthy:
+    level: error
+    allowed-values:
+      - 'yes'
+      - 'no'
+      - 'true'
+      - 'false'
+      - 'True'
+      - 'False'

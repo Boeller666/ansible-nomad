@@ -1,0 +1,47 @@
+---
+- name: configure | copy systemd nomad service file
+  ansible.builtin.copy:
+    src: etc/systemd/system/nomad.service
+    dest: /etc/systemd/system/nomad.service
+  become: true
+
+- name: configure | create nomad data dir
+  ansible.builtin.file:
+    path: /opt/nomad
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: configure | create nomad daemon folder
+  ansible.builtin.file:
+    path: /etc/nomad.d
+    state: directory
+    mode: '0700'
+  become: true
+
+- name: configure | create nomad config
+  ansible.builtin.template:
+    src: etc/nomad.d/nomad.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+  become: true
+    
+- name: configure | create server config
+  ansible.builtin.template:
+    src: etc/nomad.d/server.hcl.j2
+    dest: /etc/nomad.d/server.hcl
+  when: inventory_hostname in groups['nomad_servers']
+  become: true
+    
+- name: configure | create client config
+  ansible.builtin.copy:
+    src: etc/nomad.d/client.hcl
+    dest: /etc/nomad.d/client.hcl
+  when: inventory_hostname in groups['nomad_clients']
+  become: true
+
+- name: configure | start nomad service
+  ansible.builtin.service:
+    name: nomad
+    enabled: yes
+    state: started
+  become: true

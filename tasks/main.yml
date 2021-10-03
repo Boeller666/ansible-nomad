@@ -1,0 +1,16 @@
+---
+# tasks file for ansible-nomad
+- name: install prerequisites
+  ansible.builtin.package:
+    name: "{{ PACKAGES }}"
+    state: present
+  become: true
+
+- name: install nomad
+  include_tasks: tasks/install.yaml
+
+- name: configure nomad
+  include_tasks: tasks/configure.yaml
+
+- name: verify installation
+  include_tasks: tasks/verify.yaml

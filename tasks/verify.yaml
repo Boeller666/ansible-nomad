@@ -1,0 +1,13 @@
+---
+- name: flush handlers before verification starts
+  ansible.builtin.meta: flush_handlers
+
+- name: get nomad version
+  ansible.builtin.command:
+    cmd: nomad version
+  register: nomad_version_output
+
+- name: check that nomad {{ NOMAD_VERSION }} is installed
+  ansible.builtin.assert:
+    that: 
+      - nomad_version_output.stdout is regex("^Nomad v{{ NOMAD_VERSION }}.*")
